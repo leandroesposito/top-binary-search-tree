@@ -81,26 +81,37 @@ export default class BinarySearchTree {
     }
   }
 
-  insert(data) {
-    let prev = this.root;
+  findParentAndNodeOf(data) {
+    let parent = null;
     let curr = this.root;
-    const newNode = new BinarySearchTreeNode(data);
 
     while (curr) {
-      prev = curr;
       if (data < curr.data) {
+        parent = curr;
         curr = curr.left;
       } else if (data > curr.data) {
+        parent = curr;
         curr = curr.right;
       } else {
-        return;
+        break;
       }
     }
 
-    if (data < prev.data) {
-      prev.left = newNode;
+    return [parent, curr];
+  }
+
+  insert(data) {
+    const [parent, node] = this.findParentAndNodeOf(data);
+    if (node) {
+      return;
+    }
+
+    const newNode = new BinarySearchTreeNode(data);
+
+    if (data < parent.data) {
+      parent.left = newNode;
     } else {
-      prev.right = newNode;
+      parent.right = newNode;
     }
   }
 }
