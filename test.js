@@ -1,6 +1,8 @@
 import BinarySearchTree from "./BinarySearchTree.js";
 
 function insertAndPrint(binarySearchTree, data) {
+  const [parent, node] = binarySearchTree.findParentAndNodeOf(data);
+  console.log("parent of", data, "is", parent, "current is", node);
   binarySearchTree.insert(data);
   BinarySearchTree.prettyPrint(binarySearchTree.root);
 }
