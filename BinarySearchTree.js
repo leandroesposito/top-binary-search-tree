@@ -80,4 +80,27 @@ export default class BinarySearchTree {
       );
     }
   }
+
+  insert(data) {
+    let prev = this.root;
+    let curr = this.root;
+    const newNode = new BinarySearchTreeNode(data);
+
+    while (curr) {
+      prev = curr;
+      if (data < curr.data) {
+        curr = curr.left;
+      } else if (data > curr.data) {
+        curr = curr.right;
+      } else {
+        return;
+      }
+    }
+
+    if (data < prev.data) {
+      prev.left = newNode;
+    } else {
+      prev.right = newNode;
+    }
+  }
 }
