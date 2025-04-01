@@ -81,9 +81,9 @@ export default class BinarySearchTree {
     }
   }
 
-  findParentAndNodeOf(data) {
+  static findParentAndNodeOf(root, data) {
     let parent = null;
-    let curr = this.root;
+    let curr = root;
 
     while (curr) {
       if (data < curr.data) {
@@ -100,8 +100,16 @@ export default class BinarySearchTree {
     return [parent, curr];
   }
 
+  static findParent(root, data) {
+    const [parent, node] = BinarySearchTree.findParentAndNodeOf(root, data);
+    return parent;
+  }
+
   insert(data) {
-    const [parent, node] = this.findParentAndNodeOf(data);
+    const [parent, node] = BinarySearchTree.findParentAndNodeOf(
+      this.root,
+      data
+    );
     if (node) {
       return;
     }
@@ -113,5 +121,64 @@ export default class BinarySearchTree {
     } else {
       parent.right = newNode;
     }
+  }
+
+  static insertNode(tree, node) {
+    if (!node) {
+      return;
+    }
+
+    const parent = BinarySearchTree.findParent(tree, node.data);
+
+    if (parent.data < node.data) {
+      parent.right = node;
+    } else {
+      parent.left = node;
+    }
+  }
+
+  static replaceNode(parent, node, replacementNode) {
+    if (parent.left === node) {
+      parent.left = replacementNode;
+    } else {
+      parent.right = replacementNode;
+    }
+  }
+
+  deleteItem(data) {
+    const [parent, nodeToDelete] = BinarySearchTree.findParentAndNodeOf(
+      this.root,
+      data
+    );
+
+    // data not found: return
+    if (!nodeToDelete) {
+      return null;
+    }
+
+    let replacementNode = null;
+    let freeChildren = null;
+
+    // find children node that replace nodeToDelete
+    if (nodeToDelete.left) {
+      replacementNode = nodeToDelete.left;
+      freeChildren = nodeToDelete.right;
+    } else {
+      replacementNode = nodeToDelete.right;
+    }
+
+    // replace nodeToDelete
+    if (parent) {
+      // find wich side is nodeToDelete to replace with selected children
+      BinarySearchTree.replaceNode(parent, nodeToDelete, replacementNode);
+    } else {
+      // if no parent found, nodeToDelete is root
+      this.root = replacementNode;
+    }
+
+    // insert remaining children of deleted node
+    BinarySearchTree.insertNode(replacementNode, freeChildren);
+
+    return nodeToDelete;
   }
 }
