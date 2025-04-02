@@ -115,26 +115,38 @@ export default class BinarySearchTree {
     }
   }
 
-  static insertNode(tree, node) {
-    if (!node) {
-      return;
+  static findSuccessor(root) {
+    let curr = root.right;
+    while (curr !== null && curr.left !== null) {
+      curr = curr.left;
     }
-
-    const parent = BinarySearchTree.findParent(tree, node.data);
-
-    if (parent.data < node.data) {
-      parent.right = node;
-    } else {
-      parent.left = node;
-    }
+    return curr;
   }
 
-  static replaceNode(parent, node, replacementNode) {
-    if (parent.left === node) {
-      parent.left = replacementNode;
-    } else {
-      parent.right = replacementNode;
+  deleteItem(data, root = this.root) {
+    if (root === null) {
+      return root;
     }
+
+    if (data < root.data) {
+      root.left = this.deleteItem(data, root.left);
+    } else if (root.data < data) {
+      root.right = this.deleteItem(data, root.right);
+    } else {
+      if (root.left === null) {
+        return root.right;
+      }
+
+      if (root.right === null) {
+        return root.left;
+      }
+
+      const succ = BinarySearchTree.findSuccessor(root);
+      root.data = succ.data;
+      root.right = this.deleteItem(succ.data, root.right);
+    }
+
+    return root;
   }
 
   deleteItem(data) {
