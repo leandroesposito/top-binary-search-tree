@@ -1,4 +1,5 @@
 import BinarySearchTreeNode from "./BinarySearchTreeNode.js";
+import LinkedList from "./LinkedList.js";
 
 export default class BinarySearchTree {
   constructor(elements) {
