@@ -37,7 +37,9 @@ insertAndPrint(binarySearchTree, 10);
 // binarySearchTree.inOrderRec(console.log);
 // binarySearchTree.preOrderIter(console.log);
 // binarySearchTree.preOrderRecur(console.log);
-binarySearchTree.postOrderRecur(console.log);
+// binarySearchTree.postOrderRecur(console.log);
+
+console.log("height", binarySearchTree.height());
 
 removeAndPrint(binarySearchTree, 8);
 removeAndPrint(binarySearchTree, 67);

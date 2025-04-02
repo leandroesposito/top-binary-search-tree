@@ -279,4 +279,17 @@ export default class BinarySearchTree {
     this.postOrderRecur(callback, node.right);
     callback(node);
   }
+
+  height(node = this.root) {
+    if (node === null) {
+      return 0;
+    }
+
+    const leftHeight = this.height(node.left);
+    const rightHeight = this.height(node.right);
+
+    return (
+      Math.max(leftHeight, rightHeight) + 1 + (node === this.root ? -1 : 0)
+    );
+  }
 }
