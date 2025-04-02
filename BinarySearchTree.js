@@ -176,4 +176,35 @@ export default class BinarySearchTree {
       }
     }
   }
+
+  levelOrderRecur(callback) {
+    function helper(node, level) {
+      if (node === null) {
+        return;
+      }
+
+      if (res.length < level) {
+        res.push([]);
+      }
+
+      res[level - 1].push(node);
+
+      helper(node.left, level + 1);
+      helper(node.right, level + 1);
+    }
+
+    if (typeof callback !== "function") {
+      throw new Error("A callback function must be provided");
+    }
+
+    const res = [];
+    helper(this.root, 1);
+
+    for (const level of res) {
+      for (const node of level) {
+        callback(node);
+      }
+    }
+  }
+
 }
