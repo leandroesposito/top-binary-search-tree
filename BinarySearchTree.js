@@ -292,4 +292,29 @@ export default class BinarySearchTree {
       Math.max(leftHeight, rightHeight) + 1 + (node === this.root ? -1 : 0)
     );
   }
+
+  depth(node) {
+    let currentDepth = 0;
+    const queue = new LinkedList();
+    queue.append(this.root);
+
+    while (queue.size() > 0) {
+      const size = queue.size();
+      for (let i = 0; i < size; i++) {
+        const temp = queue.removeAt(0).value;
+
+        if (temp.data == node) {
+          return currentDepth;
+        }
+
+        if (temp.left !== null) {
+          queue.append(temp.left);
+        }
+        if (temp.right !== null) {
+          queue.append(temp.right);
+        }
+      }
+      currentDepth++;
+    }
+  }
 }

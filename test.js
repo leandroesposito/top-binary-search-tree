@@ -40,6 +40,7 @@ insertAndPrint(binarySearchTree, 10);
 // binarySearchTree.postOrderRecur(console.log);
 
 console.log("height", binarySearchTree.height());
+console.log("depth of 23", binarySearchTree.depth(23));
 
 removeAndPrint(binarySearchTree, 8);
 removeAndPrint(binarySearchTree, 67);
