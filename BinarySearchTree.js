@@ -155,5 +155,24 @@ export default class BinarySearchTree {
     return node;
   }
 
+  levelOrderIter(callback) {
+    if (typeof callback !== "function") {
+      throw new Error("A callback function must be provided");
+    }
+
+    const queue = new LinkedList();
+    queue.append(this.root);
+
+    while (queue.size() > 0) {
+      const node = queue.removeAt(0).value;
+      callback(node);
+
+      if (node.left !== null) {
+        queue.append(node.left);
+      }
+      if (node.right !== null) {
+        queue.append(node.right);
+      }
+    }
   }
 }
