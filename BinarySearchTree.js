@@ -207,4 +207,29 @@ export default class BinarySearchTree {
     }
   }
 
+  inOrderIter(callback) {
+    const stack = [];
+    let curr = this.root;
+    while (curr !== null || stack.length > 0) {
+      while (curr !== null) {
+        stack.push(curr);
+        curr = curr.left;
+      }
+
+      curr = stack.pop();
+      callback(curr);
+
+      curr = curr.right;
+    }
+  }
+
+  inOrderRecur(callback, node = this.root) {
+    if (node === null) {
+      return;
+    }
+
+    this.inOrderRecur(callback, node.left);
+    callback(node);
+    this.inOrderRecur(callback, node.right);
+  }
 }
