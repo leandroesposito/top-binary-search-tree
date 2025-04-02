@@ -268,4 +268,15 @@ export default class BinarySearchTree {
     this.preOrderRecur(callback, node.left);
     this.preOrderRecur(callback, node.right);
   }
+
+  postOrderRecur(callback, node = this.root) {
+    BinarySearchTree.validateCallback(callback);
+
+    if (node === null) {
+      return;
+    }
+    this.postOrderRecur(callback, node.left);
+    this.postOrderRecur(callback, node.right);
+    callback(node);
+  }
 }
