@@ -156,10 +156,14 @@ export default class BinarySearchTree {
     return node;
   }
 
-  levelOrderIter(callback) {
+  static validateCallback(callback) {
     if (typeof callback !== "function") {
       throw new Error("A callback function must be provided");
     }
+  }
+
+  levelOrderIter(callback) {
+    BinarySearchTree.validateCallback(callback);
 
     const queue = new LinkedList();
     queue.append(this.root);
@@ -174,6 +178,8 @@ export default class BinarySearchTree {
       if (node.right !== null) {
         queue.append(node.right);
       }
+    BinarySearchTree.validateCallback(callback);
+
     }
   }
 
@@ -193,10 +199,6 @@ export default class BinarySearchTree {
       helper(node.right, level + 1);
     }
 
-    if (typeof callback !== "function") {
-      throw new Error("A callback function must be provided");
-    }
-
     const res = [];
     helper(this.root, 1);
 
@@ -208,6 +210,8 @@ export default class BinarySearchTree {
   }
 
   inOrderIter(callback) {
+    BinarySearchTree.validateCallback(callback);
+
     const stack = [];
     let curr = this.root;
     while (curr !== null || stack.length > 0) {
@@ -224,6 +228,8 @@ export default class BinarySearchTree {
   }
 
   inOrderRecur(callback, node = this.root) {
+    BinarySearchTree.validateCallback(callback);
+
     if (node === null) {
       return;
     }
