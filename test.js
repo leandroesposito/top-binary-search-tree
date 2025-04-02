@@ -1,10 +1,7 @@
 import BinarySearchTree from "./BinarySearchTree.js";
 
 function insertAndPrint(binarySearchTree, data) {
-  const [parent, node] = BinarySearchTree.findParentAndNodeOf(
-    binarySearchTree.root,
-    data
-  );
+  const [parent, node] = binarySearchTree.findParentAndNodeOf(data);
   console.log("parent of", data, "is", parent, "current is", node);
   binarySearchTree.insert(data);
   BinarySearchTree.prettyPrint(binarySearchTree.root);
@@ -29,6 +26,12 @@ insertAndPrint(binarySearchTree, 75);
 insertAndPrint(binarySearchTree, 10);
 insertAndPrint(binarySearchTree, 20);
 insertAndPrint(binarySearchTree, 10);
+
+console.log(binarySearchTree.find(10));
+console.log(binarySearchTree.find(4));
+console.log(binarySearchTree.find(20));
+
+binarySearchTree.levelOrderIter(console.log);
 
 removeAndPrint(binarySearchTree, 8);
 removeAndPrint(binarySearchTree, 67);
