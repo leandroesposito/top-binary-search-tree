@@ -81,9 +81,9 @@ export default class BinarySearchTree {
     }
   }
 
-  static findParentAndNodeOf(root, data) {
+  findParentAndNodeOf(data) {
     let parent = null;
-    let curr = root;
+    let curr = this.root;
 
     while (curr) {
       if (data < curr.data) {
@@ -100,16 +100,8 @@ export default class BinarySearchTree {
     return [parent, curr];
   }
 
-  static findParent(root, data) {
-    const [parent, node] = BinarySearchTree.findParentAndNodeOf(root, data);
-    return parent;
-  }
-
   insert(data) {
-    const [parent, node] = BinarySearchTree.findParentAndNodeOf(
-      this.root,
-      data
-    );
+    const [parent, node] = this.findParentAndNodeOf(data);
     if (node) {
       return;
     }
