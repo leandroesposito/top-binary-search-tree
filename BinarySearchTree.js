@@ -178,12 +178,12 @@ export default class BinarySearchTree {
       if (node.right !== null) {
         queue.append(node.right);
       }
-    BinarySearchTree.validateCallback(callback);
-
     }
   }
 
   levelOrderRecur(callback) {
+    BinarySearchTree.validateCallback(callback);
+
     function helper(node, level) {
       if (node === null) {
         return;
@@ -237,5 +237,35 @@ export default class BinarySearchTree {
     this.inOrderRecur(callback, node.left);
     callback(node);
     this.inOrderRecur(callback, node.right);
+  }
+
+  preOrderIter(callback) {
+    BinarySearchTree.validateCallback(callback);
+
+    const stack = [];
+    stack.push(this.root);
+
+    while (stack.length > 0) {
+      let curr = stack.pop();
+      while (curr) {
+        if (curr.right) {
+          stack.push(curr.right);
+        }
+        callback(curr);
+        curr = curr.left;
+      }
+    }
+  }
+
+  preOrderRecur(callback, node = this.root) {
+    BinarySearchTree.validateCallback(callback);
+
+    if (node === null) {
+      return;
+    }
+
+    callback(node);
+    this.preOrderRecur(callback, node.left);
+    this.preOrderRecur(callback, node.right);
   }
 }

@@ -35,6 +35,8 @@ insertAndPrint(binarySearchTree, 10);
 // binarySearchTree.levelOrderRecur(console.log);
 // binarySearchTree.inOrderIter(console.log);
 // binarySearchTree.inOrderRec(console.log);
+binarySearchTree.preOrderIter(console.log);
+binarySearchTree.preOrderRecur(console.log);
 
 removeAndPrint(binarySearchTree, 8);
 removeAndPrint(binarySearchTree, 67);
