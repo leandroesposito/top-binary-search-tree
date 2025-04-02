@@ -27,11 +27,14 @@ insertAndPrint(binarySearchTree, 10);
 insertAndPrint(binarySearchTree, 20);
 insertAndPrint(binarySearchTree, 10);
 
-console.log(binarySearchTree.find(10));
-console.log(binarySearchTree.find(4));
-console.log(binarySearchTree.find(20));
+// console.log(binarySearchTree.find(10));
+// console.log(binarySearchTree.find(4));
+// console.log(binarySearchTree.find(20));
 
-binarySearchTree.levelOrderIter(console.log);
+// binarySearchTree.levelOrderIter(console.log);
+// binarySearchTree.levelOrderRecur(console.log);
+// binarySearchTree.inOrderIter(console.log);
+// binarySearchTree.inOrderRec(console.log);
 
 removeAndPrint(binarySearchTree, 8);
 removeAndPrint(binarySearchTree, 67);
