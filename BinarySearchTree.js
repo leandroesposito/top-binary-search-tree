@@ -149,40 +149,11 @@ export default class BinarySearchTree {
     return root;
   }
 
-  deleteItem(data) {
-    const [parent, nodeToDelete] = BinarySearchTree.findParentAndNodeOf(
-      this.root,
-      data
-    );
+  find(data) {
+    const [parent, node] = this.findParentAndNodeOf(data);
 
-    // data not found: return
-    if (!nodeToDelete) {
-      return null;
-    }
+    return node;
+  }
 
-    let replacementNode = null;
-    let freeChildren = null;
-
-    // find children node that replace nodeToDelete
-    if (nodeToDelete.left) {
-      replacementNode = nodeToDelete.left;
-      freeChildren = nodeToDelete.right;
-    } else {
-      replacementNode = nodeToDelete.right;
-    }
-
-    // replace nodeToDelete
-    if (parent) {
-      // find wich side is nodeToDelete to replace with selected children
-      BinarySearchTree.replaceNode(parent, nodeToDelete, replacementNode);
-    } else {
-      // if no parent found, nodeToDelete is root
-      this.root = replacementNode;
-    }
-
-    // insert remaining children of deleted node
-    BinarySearchTree.insertNode(replacementNode, freeChildren);
-
-    return nodeToDelete;
   }
 }
