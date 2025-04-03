@@ -21,11 +21,18 @@ const binarySearchTree = new BinarySearchTree(elements);
 
 BinarySearchTree.prettyPrint(binarySearchTree.root);
 
+console.log("isBalanced", binarySearchTree.isBalanced());
 insertAndPrint(binarySearchTree, 50);
+console.log("isBalanced", binarySearchTree.isBalanced());
 insertAndPrint(binarySearchTree, 75);
+console.log("isBalanced", binarySearchTree.isBalanced());
 insertAndPrint(binarySearchTree, 10);
+console.log("isBalanced", binarySearchTree.isBalanced());
+binarySearchTree.rebalance();
 insertAndPrint(binarySearchTree, 20);
+console.log("isBalanced", binarySearchTree.isBalanced());
 insertAndPrint(binarySearchTree, 10);
+console.log("isBalanced", binarySearchTree.isBalanced());
 
 // console.log(binarySearchTree.find(10));
 // console.log(binarySearchTree.find(4));
